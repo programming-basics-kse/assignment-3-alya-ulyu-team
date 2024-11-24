@@ -8,7 +8,7 @@ def perevirka(file_path, country, year, output=None)
         print(f"Well fella, файл {file_path} відсутній!")
         return
 
-    with open(file_path, 'r', encoding='utf-8') as data_mandata
+    with (open(file_path, 'r', encoding='utf-8') as data_mandata:
         columns = data_mandata.readline().strip().split('\t')
 
         if "Name" not in columns or "Sport" not in columns or "Medal" not in columns or "Team" not in columns or "Year" not in columns:
@@ -23,6 +23,22 @@ def perevirka(file_path, country, year, output=None)
 
         medalisty = []
         medals_quantity = {"Gold": 0, "Silver": 0, "Bronze": 0}
+
+        next_line = data_mandata.readline()
+        while next_line:
+            rows = next_line.strip().split('\t')
+            if len(rows) <= max(name_id, sport_id, medal_id, team_id, year_id):
+                next_line = data_mandata.readline()
+                continue
+
+            if rows[team_id] == country and rows[year_id] == year and rows[medal_id] != "NA":
+                medalisty.append((rows[name_id], rows[sport_id], rows[medal_id]))
+                if rows[medal_id] in medals_quantity:
+                    medals_quantity[roes[medal_id]] += 1
+
+                next_line = data_mandata.readline()
+
+
 
 
 
