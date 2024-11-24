@@ -1,6 +1,11 @@
 import argparse
 import os
 
+def perevirka(file_path, country, year, output=None)
+    if not os.path.exists(file_path):
+        print(f"Well fella, файл {file_path} відсутній!")
+        return
+
 parser = argparse.ArgumentParser(description="Обробка даних за 120 років Олімпійських ігор")
 parser.add_argument("file", help="Шлях до файлу")
 parser.add_argument("-medals", required=True, help="Назва країни? Або її код")
