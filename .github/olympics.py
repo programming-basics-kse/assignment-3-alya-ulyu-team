@@ -15,6 +15,17 @@ def perevirka(file_path, country, year, output=None)
             print("Well fella, у файлі відсутні потрібні колонки!")
             return
 
+        name_id = columns.index("Name")
+        sport_id = columns.index("Sport")
+        medal_id = columns.index("Medal")
+        team_id = columns.index("Team")
+        year_id = columns.index("Year")
+
+        medalisty = []
+        medals_quantity = {"Gold": 0, "Silver": 0, "Bronze": 0}
+
+
+
 parser = argparse.ArgumentParser(description="Обробка даних за 120 років Олімпійських ігор")
 parser.add_argument("file", help="Шлях до файлу")
 parser.add_argument("-medals", required=True, help="Назва країни? Або її код")
