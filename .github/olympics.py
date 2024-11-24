@@ -1,6 +1,6 @@
 import argparse
 import os
-from idlelib.iomenu import encoding
+
 
 
 def perevirka(file_path, country, year, output=None):
@@ -49,6 +49,13 @@ def perevirka(file_path, country, year, output=None):
             result += f"{name} - {sport} - {medal}\n"
         result += f"\nСума медалей:\nЗолото: {medals_quantity["Gold"]}, Срібло: {medals_quantity["Silver"]} Бронза: {medals_quantity["Bronze"]}"
 
+        if output:
+            with open(output, 'w', encoding='utf-8') as data_mandata_out:
+                data_mandata_out.write(result)
+            print(f"Well fella, результат у файлі {output}")
+        else:
+            print(result)
+
 
 
 
@@ -63,7 +70,7 @@ def main():
 
     args = parser.parse_args()
 
-    perevirka(args.file, args.medals, args.year)
+    perevirka(args.file, args.medals, args.year, args.output)
 
 if __name__ == "__main__":
     main()
