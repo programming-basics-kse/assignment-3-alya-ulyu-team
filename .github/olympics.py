@@ -38,6 +38,18 @@ def perevirka(file_path, country, year, output=None)
 
                 next_line = data_mandata.readline()
 
+        if not medalisty:
+            print(f"Well fella, медалісти з країни {country} у {year} році відсутні!")
+            return
+
+        topovi_medalisty = medalisty[:10]
+
+        result = "Перші 10 медалістів:\n"
+        for name, sport, medal in topovi_medalisty:
+            result += f"{name} - {sport} - {medal}\n"
+        result += f"\nСума медалей:\nЗолото: {medals_quantity["Gold"]}, Срібло: {medals_quantity["Silver"]} Бронза: {medals_quantity["Bronze"]}"
+
+
 
 
 
