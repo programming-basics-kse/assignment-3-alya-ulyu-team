@@ -1,4 +1,6 @@
+#function for exercise 4
 def interactive(dataset):
+    #make list with all information about country
     country = input("Enter country: ")
     list = []
     for row in dataset:
@@ -8,6 +10,7 @@ def interactive(dataset):
         print("There are no such country")
         return "f"
 
+    #find first year of participation
     first = list[0][9]
     first_place = list[0][11]
     for i in range(1,len(list)):
@@ -15,6 +18,7 @@ def interactive(dataset):
             first = list[i][9]
             first_place = list[i][11]
 
+    #make dictionary
     best_years = {}
     for i in list: #list with all games of one country
         if i[9] not in best_years:
@@ -26,20 +30,23 @@ def interactive(dataset):
         for i in list:
             if i[14] in medals and key == i[9]:
                 num += 1
-        best_years[key] = num
+        best_years[key] = num #number of medals in year
 
+    #choose best year
     best_y_num = -1
     for key in best_years:
         if best_years[key] > best_y_num:
             best_y_num = best_years[key]
             best_y = key
 
+    #choose worth year
     worth_y_num = best_y_num
     for key in best_years:
         if best_years[key] < worth_y_num:
             worth_y_num = best_years[key]
             worth_y = key
 
+    #make dictionary with key: year and number of different types of medals
     average = {}
     for i in list:
         if i[9] not in average:
@@ -67,12 +74,14 @@ def interactive(dataset):
         sum_g += average[key][0]
         sum_s += average[key][1]
         sum_b += average[key][2]
+    #calculate average number of medals
     ave_g = round(sum_g/n,2)
     ave_s = round(sum_s/n,2)
     ave_b = round(sum_b/n,2)
     info = [country, first, first_place, best_y, best_y_num, worth_y, worth_y_num, ave_g, ave_s, ave_b]
     return info
 
+#function for print exercise 4
 def pr_interactive(information):
     print(f"Information about {information[0]}: ")
     print(f"First year of participation: {information[1]} ({information[2]})")
